@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  beamer: ^0.13.3
   bloc: ^7.0.0
   cupertino_icons: ^1.0.3
   dartz: ^0.10.0-nullsafety.2
@@ -42,3 +43,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/i18n/

@@ -1,4 +1,4 @@
-import 'package:comunikt/src/dependencies/dependencies.config.dart';
+import 'package:comunikt/src/core/dependencies/dependencies.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
