@@ -15,20 +15,18 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Users'),
-        ),
-        body: ListView(
-          children: [
-            for (var i = 0; i < 50; ++i)
-              ListTile(
-                title: Text('User $i'),
-                onTap: () => context.beamToNamed('/users/$i'),
-              ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Users'),
+      ),
+      body: ListView(
+        children: [
+          for (var i = 0; i < 50; ++i)
+            ListTile(
+              title: Text('User $i'),
+              onTap: () => context.beamToNamed('/users/$i'),
+            ),
+        ],
       ),
     );
   }

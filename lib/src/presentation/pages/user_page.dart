@@ -19,14 +19,12 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('User $userId'),
-        ),
-        body: Center(
-          child: Text('User $userId'),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('User $userId'),
+      ),
+      body: Center(
+        child: Text('User $userId'),
       ),
     );
   }
