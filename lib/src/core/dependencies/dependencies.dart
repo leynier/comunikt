@@ -18,7 +18,12 @@ Future<void> configureDependencies() => $initGetIt(GetIt.I);
 abstract class RegisterModule {
   @lazySingleton
   Logger get logger {
-    return Logger();
+    return Logger(
+      printer: PrettyPrinter(
+        methodCount: 0,
+        printEmojis: false,
+      ),
+    );
   }
 
   @lazySingleton

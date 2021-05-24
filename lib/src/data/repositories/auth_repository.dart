@@ -1,19 +1,49 @@
-import 'package:comunikt/src/domain/entities/error_entity.dart';
-import 'package:comunikt/src/domain/entities/user_entity.dart';
+import 'dart:async';
+
+import 'package:comunikt/src/domain/entities/entities.dart';
 import 'package:comunikt/src/domain/repositories/repositories.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'package:supabase/supabase.dart';
 
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {
   final SupabaseClient supabaseClient;
+  final Logger logger;
 
-  AuthRepository({required this.supabaseClient});
+  final _controller = StreamController<AuthStatusEntity>();
+
+  AuthRepository({required this.supabaseClient, required this.logger}) {
+    supabaseClient.auth.onAuthStateChange((event, session) {
+      switch (event) {
+        case AuthChangeEvent.signedIn:
+        case AuthChangeEvent.userUpdated:
+        case AuthChangeEvent.passwordRecovery:
+          if (session != null && session.user != null) {
+            _controller.add(
+              AuthStatusEntity.authenticated(
+                user: UserGetEntity(
+                  id: session.user!.id,
+                  email: session.user!.email,
+                ),
+              ),
+            );
+          } else {
+            _controller.add(const AuthStatusEntity.unauthenticated());
+          }
+          break;
+        case AuthChangeEvent.signedOut:
+          _controller.add(const AuthStatusEntity.unauthenticated());
+          break;
+      }
+    });
+  }
 
   @override
   Future<Either<UserGetEntity, ErrorEntity>> signIn(
-      UserPostEntity entity) async {
+    UserPostEntity entity,
+  ) async {
     try {
       final response = await supabaseClient.auth.signIn(
         email: entity.email,
@@ -43,11 +73,12 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<Either<UserGetEntity, ErrorEntity>> signUp(
-      UserPostEntity entity) async {
+    UserPostEntity entity,
+  ) async {
     try {
-      final response = await supabaseClient.auth.signIn(
-        email: entity.email,
-        password: entity.password,
+      final response = await supabaseClient.auth.signUp(
+        entity.email,
+        entity.password,
       );
       if (response.error != null) {
         return Right(
@@ -70,4 +101,21 @@ class AuthRepository implements IAuthRepository {
       );
     }
   }
+
+  @override
+  Future<bool> signOut() async {
+    try {
+      supabaseClient.auth.signOut();
+      return true;
+    } catch (e) {
+      logger.e(e.toString());
+      return false;
+    }
+  }
+
+  @override
+  Stream<AuthStatusEntity> get status => _controller.stream;
+
+  @override
+  void dispose() => _controller.close();
 }

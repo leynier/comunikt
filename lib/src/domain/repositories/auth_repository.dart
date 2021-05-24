@@ -4,4 +4,7 @@ import 'package:dartz/dartz.dart';
 abstract class IAuthRepository {
   Future<Either<UserGetEntity, ErrorEntity>> signIn(UserPostEntity entity);
   Future<Either<UserGetEntity, ErrorEntity>> signUp(UserPostEntity entity);
+  Future<bool> signOut();
+  Stream<AuthStatusEntity> get status;
+  void dispose();
 }

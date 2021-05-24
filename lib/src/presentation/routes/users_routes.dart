@@ -2,7 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:comunikt/src/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 
-class UsersLocation extends BeamLocation {
+class UsersRoutes extends BeamLocation {
   @override
   List<String> get pathBlueprints => ['/users/:userId'];
   @override

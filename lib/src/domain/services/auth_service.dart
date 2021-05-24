@@ -6,46 +6,31 @@ import 'package:injectable/injectable.dart';
 abstract class IAuthService {
   Future<Either<UserGetEntity, ErrorEntity>> signIn(UserPostEntity entity);
   Future<Either<UserGetEntity, ErrorEntity>> signUp(UserPostEntity entity);
-  UserGetEntity? getUser();
-  bool isAuthenticated();
+  Future<bool> signOut();
+  Stream<AuthStatusEntity> get status;
+  void dispose();
 }
 
 @LazySingleton(as: IAuthService)
 class AuthService implements IAuthService {
   final IAuthRepository authRepository;
-  final ILocalRepository localRepository;
 
-  AuthService({required this.authRepository, required this.localRepository});
-
-  @override
-  Future<Either<UserGetEntity, ErrorEntity>> signIn(
-    UserPostEntity entity,
-  ) async {
-    final response = await authRepository.signIn(entity);
-    response.fold(
-      (user) async {
-        await localRepository.setUser(user);
-      },
-      (error) async {
-        await localRepository.delUser();
-      },
-    );
-    return response;
-  }
+  AuthService({required this.authRepository});
 
   @override
-  Future<Either<UserGetEntity, ErrorEntity>> signUp(
-      UserPostEntity entity) async {
-    return authRepository.signUp(entity);
-  }
+  Future<Either<UserGetEntity, ErrorEntity>> signIn(UserPostEntity entity) =>
+      authRepository.signIn(entity);
 
   @override
-  UserGetEntity? getUser() {
-    return localRepository.getUser();
-  }
+  Future<Either<UserGetEntity, ErrorEntity>> signUp(UserPostEntity entity) =>
+      authRepository.signUp(entity);
 
   @override
-  bool isAuthenticated() {
-    return localRepository.isAuthenticated();
-  }
+  Future<bool> signOut() => authRepository.signOut();
+
+  @override
+  Stream<AuthStatusEntity> get status => authRepository.status;
+
+  @override
+  void dispose() => authRepository.dispose();
 }

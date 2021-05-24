@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:comunikt/src/domain/services/services.dart';
+import 'package:comunikt/src/presentation/routes/auth_routes.dart';
 import 'package:comunikt/src/presentation/routes/home_routes.dart';
+import 'package:comunikt/src/presentation/routes/not_found_routes.dart';
 import 'package:comunikt/src/presentation/routes/users_routes.dart';
 import 'package:get_it/get_it.dart';
 
@@ -8,15 +10,19 @@ class Routes {
   static final routerDelegate = BeamerDelegate(
     guards: [
       BeamGuard(
-        pathBlueprints: ['/users*'],
-        check: (context, location) => GetIt.I<IAuthService>().isAuthenticated(),
-        beamToNamed: '/',
+        pathBlueprints: ['/login'],
+        check: (context, location) =>
+            GetIt.I<ILocalService>().getUser() != null,
+        beamToNamed: '/login',
+        guardNonMatching: true,
       ),
     ],
     locationBuilder: BeamerLocationBuilder(
       beamLocations: [
-        HomeLocation(),
-        UsersLocation(),
+        HomeRoutes(),
+        UsersRoutes(),
+        AuthRoutes(),
+        NotFoundRoutes(),
       ],
     ),
   );
