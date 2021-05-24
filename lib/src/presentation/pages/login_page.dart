@@ -39,10 +39,10 @@ class LoginPage extends StatelessWidget {
                 builder: (context) {
                   return Column(
                     children: [
-                      EmailInputWidget(
+                      _EmailInputWidget(
                         email: context.read<ILoginBloc>().state.email.value,
                       ),
-                      PasswordInputWidget(
+                      _PasswordInputWidget(
                         password:
                             context.read<ILoginBloc>().state.password.value,
                       ),
@@ -55,6 +55,52 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _EmailInputWidget extends StatelessWidget {
+  final TextEditingController _controller;
+
+  _EmailInputWidget({Key? key, required String email})
+      : _controller = TextEditingController(text: email),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final email = context.select((ILoginBloc bloc) => bloc.state.email);
+    return EmailInputWidget(
+      controller: _controller,
+      email: email,
+      keyText: 'loginForm_emailInput_textField',
+      onChanged: (email) {
+        context
+            .read<ILoginBloc>()
+            .add(LoginEvent.emailChanged(email: email.trim()));
+      },
+    );
+  }
+}
+
+class _PasswordInputWidget extends StatelessWidget {
+  final TextEditingController _controller;
+
+  _PasswordInputWidget({Key? key, required String password})
+      : _controller = TextEditingController(text: password),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final password = context.select((ILoginBloc bloc) => bloc.state.password);
+    return PasswordInputWidget(
+      controller: _controller,
+      password: password,
+      keyText: 'loginForm_passwordInput_textField',
+      onChanged: (password) {
+        context
+            .read<ILoginBloc>()
+            .add(LoginEvent.passwordChanged(password: password.trim()));
+      },
     );
   }
 }

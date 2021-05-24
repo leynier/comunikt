@@ -1,26 +1,29 @@
-import 'package:comunikt/src/presentation/blocs/blocs.dart';
+import 'package:comunikt/src/presentation/inputs/inputs.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmailInputWidget extends StatelessWidget {
-  final TextEditingController _controller;
+  final String keyText;
+  final TextEditingController controller;
+  final EmailInput email;
+  final ValueChanged<String> onChanged;
 
-  EmailInputWidget({Key? key, required String email})
-      : _controller = TextEditingController(text: email),
-        super(key: key);
+  const EmailInputWidget({
+    Key? key,
+    required this.keyText,
+    required this.controller,
+    required this.email,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final email = context.select((ILoginBloc bloc) => bloc.state.email);
     return TextField(
-      key: const Key('loginForm_emailInput_textField'),
-      controller: _controller,
+      key: Key(keyText),
+      controller: controller,
       autofillHints: const [AutofillHints.email, AutofillHints.username],
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
-      onChanged: (email) => context
-          .read<ILoginBloc>()
-          .add(LoginEvent.emailChanged(email: email.trim())),
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: 'Email',
         errorText: email.invalid ? 'Invalid email' : null,
