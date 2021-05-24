@@ -62,6 +62,7 @@ class AuthRepository implements IAuthRepository {
         email: response.user!.email,
       ));
     } catch (e) {
+      logger.e(e.toString());
       return Right(
         ErrorEntity(
           message: e.toString(),
@@ -93,6 +94,7 @@ class AuthRepository implements IAuthRepository {
         email: response.user!.email,
       ));
     } catch (e) {
+      logger.e(e.toString());
       return Right(
         ErrorEntity(
           message: e.toString(),
@@ -118,4 +120,29 @@ class AuthRepository implements IAuthRepository {
 
   @override
   void dispose() => _controller.close();
+
+  @override
+  Future<Either<bool, ErrorEntity>> resetPassword(String email) async {
+    try {
+      final response =
+          await supabaseClient.auth.api.resetPasswordForEmail(email);
+      if (response.error != null) {
+        return Right(
+          ErrorEntity(
+            message: response.error!.message,
+            code: response.error.hashCode,
+          ),
+        );
+      }
+      return const Left(true);
+    } catch (e) {
+      logger.e(e.toString());
+      return Right(
+        ErrorEntity(
+          message: e.toString(),
+          code: e.hashCode,
+        ),
+      );
+    }
+  }
 }

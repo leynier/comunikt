@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:comunikt/src/domain/entities/entities.dart';
 import 'package:comunikt/src/domain/services/services.dart';
-import 'package:comunikt/src/presentation/inputs/email_input.dart';
 import 'package:comunikt/src/presentation/inputs/inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
