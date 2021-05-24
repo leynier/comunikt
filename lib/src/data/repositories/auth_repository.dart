@@ -73,7 +73,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<UserGetEntity, ErrorEntity>> signUp(
+  Future<Either<bool, ErrorEntity>> signUp(
     UserPostEntity entity,
   ) async {
     try {
@@ -89,10 +89,7 @@ class AuthRepository implements IAuthRepository {
           ),
         );
       }
-      return Left(UserGetEntity(
-        id: response.user!.id,
-        email: response.user!.email,
-      ));
+      return const Left(true);
     } catch (e) {
       logger.e(e.toString());
       return Right(

@@ -1,20 +1,17 @@
-part of 'login_bloc.dart';
+part of 'register_bloc.dart';
 
 @freezed
-class LoginState with _$LoginState {
-  @Assert(
-    'status != FormzStatus.submissionSuccess || user != null',
-    'When status of submission is success user cant be null.',
-  )
+class RegisterState with _$RegisterState {
   @Assert(
     'status != FormzStatus.submissionFailure || error != null',
     'When status of submission is failure error cant be null.',
   )
-  const factory LoginState({
+  const factory RegisterState({
     @Default(FormzStatus.pure) FormzStatus status,
     @Default(EmailInput.pure()) EmailInput email,
     @Default(PasswordInput.pure()) PasswordInput password,
-    @Default(null) UserGetEntity? user,
+    @Default(ConfirmPasswordInput.pure(''))
+        ConfirmPasswordInput confirmPassword,
     @Default(null) ErrorEntity? error,
-  }) = _LoginState;
+  }) = _RegisterState;
 }

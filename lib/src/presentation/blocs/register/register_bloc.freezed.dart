@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'login_bloc.dart';
+part of 'register_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$LoginEventTearOff {
-  const _$LoginEventTearOff();
+class _$RegisterEventTearOff {
+  const _$RegisterEventTearOff();
 
   _EmailChanged emailChanged({required String email}) {
     return _EmailChanged(
@@ -28,20 +28,28 @@ class _$LoginEventTearOff {
     );
   }
 
+  _ConfirmPasswordChanged confirmPasswordChanged(
+      {required String confirmPassword}) {
+    return _ConfirmPasswordChanged(
+      confirmPassword: confirmPassword,
+    );
+  }
+
   _Submit submit() {
     return const _Submit();
   }
 }
 
 /// @nodoc
-const $LoginEvent = _$LoginEventTearOff();
+const $RegisterEvent = _$RegisterEventTearOff();
 
 /// @nodoc
-mixin _$LoginEvent {
+mixin _$RegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String confirmPassword) confirmPasswordChanged,
     required TResult Function() submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +57,7 @@ mixin _$LoginEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String confirmPassword)? confirmPasswordChanged,
     TResult Function()? submit,
     required TResult orElse(),
   }) =>
@@ -57,6 +66,8 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmPasswordChanged value)
+        confirmPasswordChanged,
     required TResult Function(_Submit value) submit,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +75,7 @@ mixin _$LoginEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) =>
@@ -71,19 +83,20 @@ mixin _$LoginEvent {
 }
 
 /// @nodoc
-abstract class $LoginEventCopyWith<$Res> {
-  factory $LoginEventCopyWith(
-          LoginEvent value, $Res Function(LoginEvent) then) =
-      _$LoginEventCopyWithImpl<$Res>;
+abstract class $RegisterEventCopyWith<$Res> {
+  factory $RegisterEventCopyWith(
+          RegisterEvent value, $Res Function(RegisterEvent) then) =
+      _$RegisterEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
-  _$LoginEventCopyWithImpl(this._value, this._then);
+class _$RegisterEventCopyWithImpl<$Res>
+    implements $RegisterEventCopyWith<$Res> {
+  _$RegisterEventCopyWithImpl(this._value, this._then);
 
-  final LoginEvent _value;
+  final RegisterEvent _value;
   // ignore: unused_field
-  final $Res Function(LoginEvent) _then;
+  final $Res Function(RegisterEvent) _then;
 }
 
 /// @nodoc
@@ -95,7 +108,8 @@ abstract class _$EmailChangedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$EmailChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+class __$EmailChangedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
     implements _$EmailChangedCopyWith<$Res> {
   __$EmailChangedCopyWithImpl(
       _EmailChanged _value, $Res Function(_EmailChanged) _then)
@@ -127,7 +141,7 @@ class _$_EmailChanged implements _EmailChanged {
 
   @override
   String toString() {
-    return 'LoginEvent.emailChanged(email: $email)';
+    return 'RegisterEvent.emailChanged(email: $email)';
   }
 
   @override
@@ -152,6 +166,7 @@ class _$_EmailChanged implements _EmailChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String confirmPassword) confirmPasswordChanged,
     required TResult Function() submit,
   }) {
     return emailChanged(email);
@@ -162,6 +177,7 @@ class _$_EmailChanged implements _EmailChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String confirmPassword)? confirmPasswordChanged,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -176,6 +192,8 @@ class _$_EmailChanged implements _EmailChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmPasswordChanged value)
+        confirmPasswordChanged,
     required TResult Function(_Submit value) submit,
   }) {
     return emailChanged(this);
@@ -186,6 +204,7 @@ class _$_EmailChanged implements _EmailChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -196,7 +215,7 @@ class _$_EmailChanged implements _EmailChanged {
   }
 }
 
-abstract class _EmailChanged implements LoginEvent {
+abstract class _EmailChanged implements RegisterEvent {
   const factory _EmailChanged({required String email}) = _$_EmailChanged;
 
   String get email => throw _privateConstructorUsedError;
@@ -215,7 +234,7 @@ abstract class _$PasswordChangedCopyWith<$Res> {
 
 /// @nodoc
 class __$PasswordChangedCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
     implements _$PasswordChangedCopyWith<$Res> {
   __$PasswordChangedCopyWithImpl(
       _PasswordChanged _value, $Res Function(_PasswordChanged) _then)
@@ -247,7 +266,7 @@ class _$_PasswordChanged implements _PasswordChanged {
 
   @override
   String toString() {
-    return 'LoginEvent.passwordChanged(password: $password)';
+    return 'RegisterEvent.passwordChanged(password: $password)';
   }
 
   @override
@@ -273,6 +292,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String confirmPassword) confirmPasswordChanged,
     required TResult Function() submit,
   }) {
     return passwordChanged(password);
@@ -283,6 +303,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String confirmPassword)? confirmPasswordChanged,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -297,6 +318,8 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmPasswordChanged value)
+        confirmPasswordChanged,
     required TResult Function(_Submit value) submit,
   }) {
     return passwordChanged(this);
@@ -307,6 +330,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -317,7 +341,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   }
 }
 
-abstract class _PasswordChanged implements LoginEvent {
+abstract class _PasswordChanged implements RegisterEvent {
   const factory _PasswordChanged({required String password}) =
       _$_PasswordChanged;
 
@@ -328,13 +352,142 @@ abstract class _PasswordChanged implements LoginEvent {
 }
 
 /// @nodoc
+abstract class _$ConfirmPasswordChangedCopyWith<$Res> {
+  factory _$ConfirmPasswordChangedCopyWith(_ConfirmPasswordChanged value,
+          $Res Function(_ConfirmPasswordChanged) then) =
+      __$ConfirmPasswordChangedCopyWithImpl<$Res>;
+  $Res call({String confirmPassword});
+}
+
+/// @nodoc
+class __$ConfirmPasswordChangedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$ConfirmPasswordChangedCopyWith<$Res> {
+  __$ConfirmPasswordChangedCopyWithImpl(_ConfirmPasswordChanged _value,
+      $Res Function(_ConfirmPasswordChanged) _then)
+      : super(_value, (v) => _then(v as _ConfirmPasswordChanged));
+
+  @override
+  _ConfirmPasswordChanged get _value => super._value as _ConfirmPasswordChanged;
+
+  @override
+  $Res call({
+    Object? confirmPassword = freezed,
+  }) {
+    return _then(_ConfirmPasswordChanged(
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ConfirmPasswordChanged implements _ConfirmPasswordChanged {
+  const _$_ConfirmPasswordChanged({required this.confirmPassword});
+
+  @override
+  final String confirmPassword;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.confirmPasswordChanged(confirmPassword: $confirmPassword)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ConfirmPasswordChanged &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                const DeepCollectionEquality()
+                    .equals(other.confirmPassword, confirmPassword)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(confirmPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ConfirmPasswordChangedCopyWith<_ConfirmPasswordChanged> get copyWith =>
+      __$ConfirmPasswordChangedCopyWithImpl<_ConfirmPasswordChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String confirmPassword) confirmPasswordChanged,
+    required TResult Function() submit,
+  }) {
+    return confirmPasswordChanged(confirmPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String confirmPassword)? confirmPasswordChanged,
+    TResult Function()? submit,
+    required TResult orElse(),
+  }) {
+    if (confirmPasswordChanged != null) {
+      return confirmPasswordChanged(confirmPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmPasswordChanged value)
+        confirmPasswordChanged,
+    required TResult Function(_Submit value) submit,
+  }) {
+    return confirmPasswordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
+    TResult Function(_Submit value)? submit,
+    required TResult orElse(),
+  }) {
+    if (confirmPasswordChanged != null) {
+      return confirmPasswordChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmPasswordChanged implements RegisterEvent {
+  const factory _ConfirmPasswordChanged({required String confirmPassword}) =
+      _$_ConfirmPasswordChanged;
+
+  String get confirmPassword => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ConfirmPasswordChangedCopyWith<_ConfirmPasswordChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$SubmitCopyWith<$Res> {
   factory _$SubmitCopyWith(_Submit value, $Res Function(_Submit) then) =
       __$SubmitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SubmitCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+class __$SubmitCopyWithImpl<$Res> extends _$RegisterEventCopyWithImpl<$Res>
     implements _$SubmitCopyWith<$Res> {
   __$SubmitCopyWithImpl(_Submit _value, $Res Function(_Submit) _then)
       : super(_value, (v) => _then(v as _Submit));
@@ -350,7 +503,7 @@ class _$_Submit implements _Submit {
 
   @override
   String toString() {
-    return 'LoginEvent.submit()';
+    return 'RegisterEvent.submit()';
   }
 
   @override
@@ -366,6 +519,7 @@ class _$_Submit implements _Submit {
   TResult when<TResult extends Object?>({
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String confirmPassword) confirmPasswordChanged,
     required TResult Function() submit,
   }) {
     return submit();
@@ -376,6 +530,7 @@ class _$_Submit implements _Submit {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String confirmPassword)? confirmPasswordChanged,
     TResult Function()? submit,
     required TResult orElse(),
   }) {
@@ -390,6 +545,8 @@ class _$_Submit implements _Submit {
   TResult map<TResult extends Object?>({
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmPasswordChanged value)
+        confirmPasswordChanged,
     required TResult Function(_Submit value) submit,
   }) {
     return submit(this);
@@ -400,6 +557,7 @@ class _$_Submit implements _Submit {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
     TResult Function(_Submit value)? submit,
     required TResult orElse(),
   }) {
@@ -410,75 +568,78 @@ class _$_Submit implements _Submit {
   }
 }
 
-abstract class _Submit implements LoginEvent {
+abstract class _Submit implements RegisterEvent {
   const factory _Submit() = _$_Submit;
 }
 
 /// @nodoc
-class _$LoginStateTearOff {
-  const _$LoginStateTearOff();
+class _$RegisterStateTearOff {
+  const _$RegisterStateTearOff();
 
-  _LoginState call(
+  _RegisterState call(
       {FormzStatus status = FormzStatus.pure,
       EmailInput email = const EmailInput.pure(),
       PasswordInput password = const PasswordInput.pure(),
-      UserGetEntity? user = null,
+      ConfirmPasswordInput confirmPassword =
+          const ConfirmPasswordInput.pure(''),
       ErrorEntity? error = null}) {
-    return _LoginState(
+    return _RegisterState(
       status: status,
       email: email,
       password: password,
-      user: user,
+      confirmPassword: confirmPassword,
       error: error,
     );
   }
 }
 
 /// @nodoc
-const $LoginState = _$LoginStateTearOff();
+const $RegisterState = _$RegisterStateTearOff();
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$RegisterState {
   FormzStatus get status => throw _privateConstructorUsedError;
   EmailInput get email => throw _privateConstructorUsedError;
   PasswordInput get password => throw _privateConstructorUsedError;
-  UserGetEntity? get user => throw _privateConstructorUsedError;
+  ConfirmPasswordInput get confirmPassword =>
+      throw _privateConstructorUsedError;
   ErrorEntity? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginStateCopyWith<LoginState> get copyWith =>
+  $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res>;
+abstract class $RegisterStateCopyWith<$Res> {
+  factory $RegisterStateCopyWith(
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res>;
   $Res call(
       {FormzStatus status,
       EmailInput email,
       PasswordInput password,
-      UserGetEntity? user,
+      ConfirmPasswordInput confirmPassword,
       ErrorEntity? error});
 
   $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$RegisterStateCopyWithImpl<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  _$RegisterStateCopyWithImpl(this._value, this._then);
 
-  final LoginState _value;
+  final RegisterState _value;
   // ignore: unused_field
-  final $Res Function(LoginState) _then;
+  final $Res Function(RegisterState) _then;
 
   @override
   $Res call({
     Object? status = freezed,
     Object? email = freezed,
     Object? password = freezed,
-    Object? user = freezed,
+    Object? confirmPassword = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -494,10 +655,10 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserGetEntity?,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmPasswordInput,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -518,16 +679,17 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$LoginStateCopyWith(
-          _LoginState value, $Res Function(_LoginState) then) =
-      __$LoginStateCopyWithImpl<$Res>;
+abstract class _$RegisterStateCopyWith<$Res>
+    implements $RegisterStateCopyWith<$Res> {
+  factory _$RegisterStateCopyWith(
+          _RegisterState value, $Res Function(_RegisterState) then) =
+      __$RegisterStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {FormzStatus status,
       EmailInput email,
       PasswordInput password,
-      UserGetEntity? user,
+      ConfirmPasswordInput confirmPassword,
       ErrorEntity? error});
 
   @override
@@ -535,24 +697,25 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements _$LoginStateCopyWith<$Res> {
-  __$LoginStateCopyWithImpl(
-      _LoginState _value, $Res Function(_LoginState) _then)
-      : super(_value, (v) => _then(v as _LoginState));
+class __$RegisterStateCopyWithImpl<$Res>
+    extends _$RegisterStateCopyWithImpl<$Res>
+    implements _$RegisterStateCopyWith<$Res> {
+  __$RegisterStateCopyWithImpl(
+      _RegisterState _value, $Res Function(_RegisterState) _then)
+      : super(_value, (v) => _then(v as _RegisterState));
 
   @override
-  _LoginState get _value => super._value as _LoginState;
+  _RegisterState get _value => super._value as _RegisterState;
 
   @override
   $Res call({
     Object? status = freezed,
     Object? email = freezed,
     Object? password = freezed,
-    Object? user = freezed,
+    Object? confirmPassword = freezed,
     Object? error = freezed,
   }) {
-    return _then(_LoginState(
+    return _then(_RegisterState(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -565,10 +728,10 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserGetEntity?,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as ConfirmPasswordInput,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -579,16 +742,14 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoginState implements _LoginState {
-  const _$_LoginState(
+class _$_RegisterState implements _RegisterState {
+  const _$_RegisterState(
       {this.status = FormzStatus.pure,
       this.email = const EmailInput.pure(),
       this.password = const PasswordInput.pure(),
-      this.user = null,
+      this.confirmPassword = const ConfirmPasswordInput.pure(''),
       this.error = null})
-      : assert(status != FormzStatus.submissionSuccess || user != null,
-            'When status of submission is success user cant be null.'),
-        assert(status != FormzStatus.submissionFailure || error != null,
+      : assert(status != FormzStatus.submissionFailure || error != null,
             'When status of submission is failure error cant be null.');
 
   @JsonKey(defaultValue: FormzStatus.pure)
@@ -600,22 +761,22 @@ class _$_LoginState implements _LoginState {
   @JsonKey(defaultValue: const PasswordInput.pure())
   @override
   final PasswordInput password;
-  @JsonKey(defaultValue: null)
+  @JsonKey(defaultValue: const ConfirmPasswordInput.pure(''))
   @override
-  final UserGetEntity? user;
+  final ConfirmPasswordInput confirmPassword;
   @JsonKey(defaultValue: null)
   @override
   final ErrorEntity? error;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, email: $email, password: $password, user: $user, error: $error)';
+    return 'RegisterState(status: $status, email: $email, password: $password, confirmPassword: $confirmPassword, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoginState &&
+        (other is _RegisterState &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.email, email) ||
@@ -623,8 +784,9 @@ class _$_LoginState implements _LoginState {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                const DeepCollectionEquality()
+                    .equals(other.confirmPassword, confirmPassword)) &&
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
@@ -635,22 +797,22 @@ class _$_LoginState implements _LoginState {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(confirmPassword) ^
       const DeepCollectionEquality().hash(error);
 
   @JsonKey(ignore: true)
   @override
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
-      __$LoginStateCopyWithImpl<_LoginState>(this, _$identity);
+  _$RegisterStateCopyWith<_RegisterState> get copyWith =>
+      __$RegisterStateCopyWithImpl<_RegisterState>(this, _$identity);
 }
 
-abstract class _LoginState implements LoginState {
-  const factory _LoginState(
+abstract class _RegisterState implements RegisterState {
+  const factory _RegisterState(
       {FormzStatus status,
       EmailInput email,
       PasswordInput password,
-      UserGetEntity? user,
-      ErrorEntity? error}) = _$_LoginState;
+      ConfirmPasswordInput confirmPassword,
+      ErrorEntity? error}) = _$_RegisterState;
 
   @override
   FormzStatus get status => throw _privateConstructorUsedError;
@@ -659,11 +821,12 @@ abstract class _LoginState implements LoginState {
   @override
   PasswordInput get password => throw _privateConstructorUsedError;
   @override
-  UserGetEntity? get user => throw _privateConstructorUsedError;
+  ConfirmPasswordInput get confirmPassword =>
+      throw _privateConstructorUsedError;
   @override
   ErrorEntity? get error => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LoginStateCopyWith<_LoginState> get copyWith =>
+  _$RegisterStateCopyWith<_RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }

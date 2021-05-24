@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 
 abstract class IAuthService {
   Future<Either<UserGetEntity, ErrorEntity>> signIn(UserPostEntity entity);
-  Future<Either<UserGetEntity, ErrorEntity>> signUp(UserPostEntity entity);
+  Future<Either<bool, ErrorEntity>> signUp(UserPostEntity entity);
   Future<Either<bool, ErrorEntity>> resetPassword(String email);
   Future<bool> signOut();
   Stream<AuthStatusEntity> get status;
@@ -23,7 +23,7 @@ class AuthService implements IAuthService {
       authRepository.signIn(entity);
 
   @override
-  Future<Either<UserGetEntity, ErrorEntity>> signUp(UserPostEntity entity) =>
+  Future<Either<bool, ErrorEntity>> signUp(UserPostEntity entity) =>
       authRepository.signUp(entity);
 
   @override

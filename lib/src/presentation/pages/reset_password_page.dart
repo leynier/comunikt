@@ -7,26 +7,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 
-class LoginPage extends StatelessWidget {
+class ResetPasswordPage extends StatelessWidget {
   static BeamPage getPage() {
     return BeamPage(
-      key: const ValueKey('login'),
-      title: getTitle('Login'),
+      key: const ValueKey('resetpassword'),
+      title: getTitle('Reset Password'),
       type: BeamPageType.fadeTransition,
-      child: LoginPage(),
+      child: ResetPasswordPage(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ILoginBloc>(
+    return BlocProvider<IResetPasswordBloc>(
       create: (context) => GetIt.I(),
       child: Scaffold(
         body: SafeArea(
-          child: BlocListener<ILoginBloc, LoginState>(
+          child: BlocListener<IResetPasswordBloc, ResetPasswordState>(
             listener: (context, state) {
               if (state.status == FormzStatus.submissionSuccess) {
-                context.beamToNamed('/');
+                context.beamToNamed('/login');
               }
               if (state.status == FormzStatus.submissionFailure) {
                 ScaffoldMessenger.of(context)
@@ -40,13 +40,13 @@ class LoginPage extends StatelessWidget {
                   return Column(
                     children: [
                       _EmailInputWidget(
-                        email: context.read<ILoginBloc>().state.email.value,
+                        email: context
+                            .read<IResetPasswordBloc>()
+                            .state
+                            .email
+                            .value,
                       ),
-                      _PasswordInputWidget(
-                        password:
-                            context.read<ILoginBloc>().state.password.value,
-                      ),
-                      _LoginButton(),
+                      _ResetPasswordButton(),
                     ],
                   );
                 },
@@ -68,57 +68,36 @@ class _EmailInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email = context.select((ILoginBloc bloc) => bloc.state.email);
+    final email = context.select((IResetPasswordBloc bloc) => bloc.state.email);
     return EmailInputWidget(
       controller: _controller,
       email: email,
-      keyText: 'loginForm_emailInput_textField',
+      keyText: 'resetpasswordForm_emailInput_textField',
       onChanged: (email) {
         context
-            .read<ILoginBloc>()
-            .add(LoginEvent.emailChanged(email: email.trim()));
+            .read<IResetPasswordBloc>()
+            .add(ResetPasswordEvent.emailChanged(email: email.trim()));
       },
     );
   }
 }
 
-class _PasswordInputWidget extends StatelessWidget {
-  final TextEditingController _controller;
-
-  _PasswordInputWidget({Key? key, required String password})
-      : _controller = TextEditingController(text: password),
-        super(key: key);
-
+class _ResetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final password = context.select((ILoginBloc bloc) => bloc.state.password);
-    return PasswordInputWidget(
-      controller: _controller,
-      password: password,
-      keyText: 'loginForm_passwordInput_textField',
-      onChanged: (password) {
-        context
-            .read<ILoginBloc>()
-            .add(LoginEvent.passwordChanged(password: password.trim()));
-      },
-    );
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final status = context.select((ILoginBloc bloc) => bloc.state.status);
+    final status =
+        context.select((IResetPasswordBloc bloc) => bloc.state.status);
     return Center(
       child: status.isSubmissionInProgress
           ? const CircularProgressIndicator()
           : ElevatedButton(
-              key: const Key('loginForm_continue_raisedButton'),
+              key: const Key('resetpasswordForm_continue_raisedButton'),
               onPressed: status.isValidated
-                  ? () =>
-                      context.read<ILoginBloc>().add(const LoginEvent.submit())
+                  ? () => context
+                      .read<IResetPasswordBloc>()
+                      .add(const ResetPasswordEvent.submit())
                   : null,
-              child: const Text('Login'),
+              child: const Text('Reset Password'),
             ),
     );
   }

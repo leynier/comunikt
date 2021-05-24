@@ -7,26 +7,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   static BeamPage getPage() {
     return BeamPage(
-      key: const ValueKey('login'),
-      title: getTitle('Login'),
+      key: const ValueKey('register'),
+      title: getTitle('Register'),
       type: BeamPageType.fadeTransition,
-      child: LoginPage(),
+      child: RegisterPage(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ILoginBloc>(
+    return BlocProvider<IRegisterBloc>(
       create: (context) => GetIt.I(),
       child: Scaffold(
         body: SafeArea(
-          child: BlocListener<ILoginBloc, LoginState>(
+          child: BlocListener<IRegisterBloc, RegisterState>(
             listener: (context, state) {
               if (state.status == FormzStatus.submissionSuccess) {
-                context.beamToNamed('/');
+                context.beamToNamed('/login');
               }
               if (state.status == FormzStatus.submissionFailure) {
                 ScaffoldMessenger.of(context)
@@ -40,13 +40,20 @@ class LoginPage extends StatelessWidget {
                   return Column(
                     children: [
                       _EmailInputWidget(
-                        email: context.read<ILoginBloc>().state.email.value,
+                        email: context.read<IRegisterBloc>().state.email.value,
                       ),
                       _PasswordInputWidget(
                         password:
-                            context.read<ILoginBloc>().state.password.value,
+                            context.read<IRegisterBloc>().state.password.value,
                       ),
-                      _LoginButton(),
+                      _ConfirmPasswordInputWidget(
+                        confirmPassword: context
+                            .read<IRegisterBloc>()
+                            .state
+                            .confirmPassword
+                            .value,
+                      ),
+                      _RegisterButton(),
                     ],
                   );
                 },
@@ -68,15 +75,15 @@ class _EmailInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final email = context.select((ILoginBloc bloc) => bloc.state.email);
+    final email = context.select((IRegisterBloc bloc) => bloc.state.email);
     return EmailInputWidget(
       controller: _controller,
       email: email,
-      keyText: 'loginForm_emailInput_textField',
+      keyText: 'registerForm_emailInput_textField',
       onChanged: (email) {
         context
-            .read<ILoginBloc>()
-            .add(LoginEvent.emailChanged(email: email.trim()));
+            .read<IRegisterBloc>()
+            .add(RegisterEvent.emailChanged(email: email.trim()));
       },
     );
   }
@@ -91,34 +98,59 @@ class _PasswordInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final password = context.select((ILoginBloc bloc) => bloc.state.password);
+    final password =
+        context.select((IRegisterBloc bloc) => bloc.state.password);
     return PasswordInputWidget(
       controller: _controller,
       password: password,
-      keyText: 'loginForm_passwordInput_textField',
+      keyText: 'registerForm_passwordInput_textField',
       onChanged: (password) {
         context
-            .read<ILoginBloc>()
-            .add(LoginEvent.passwordChanged(password: password.trim()));
+            .read<IRegisterBloc>()
+            .add(RegisterEvent.passwordChanged(password: password.trim()));
       },
     );
   }
 }
 
-class _LoginButton extends StatelessWidget {
+class _ConfirmPasswordInputWidget extends StatelessWidget {
+  final TextEditingController _controller;
+
+  _ConfirmPasswordInputWidget({Key? key, required String confirmPassword})
+      : _controller = TextEditingController(text: confirmPassword),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final status = context.select((ILoginBloc bloc) => bloc.state.status);
+    final confirmPassword =
+        context.select((IRegisterBloc bloc) => bloc.state.confirmPassword);
+    return ConfirmPasswordInputWidget(
+      controller: _controller,
+      confirmPassword: confirmPassword,
+      keyText: 'registerForm_confirmPasswordInput_textField',
+      onChanged: (confirmPassword) {
+        context.read<IRegisterBloc>().add(RegisterEvent.confirmPasswordChanged(
+            confirmPassword: confirmPassword.trim()));
+      },
+    );
+  }
+}
+
+class _RegisterButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final status = context.select((IRegisterBloc bloc) => bloc.state.status);
     return Center(
       child: status.isSubmissionInProgress
           ? const CircularProgressIndicator()
           : ElevatedButton(
-              key: const Key('loginForm_continue_raisedButton'),
+              key: const Key('registerForm_continue_raisedButton'),
               onPressed: status.isValidated
-                  ? () =>
-                      context.read<ILoginBloc>().add(const LoginEvent.submit())
+                  ? () => context
+                      .read<IRegisterBloc>()
+                      .add(const RegisterEvent.submit())
                   : null,
-              child: const Text('Login'),
+              child: const Text('Register'),
             ),
     );
   }

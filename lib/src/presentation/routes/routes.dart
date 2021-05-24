@@ -10,7 +10,7 @@ class Routes {
   static final routerDelegate = BeamerDelegate(
     guards: [
       BeamGuard(
-        pathBlueprints: ['/login'],
+        pathBlueprints: ['/login', '/register', '/resetpassword'],
         check: (context, location) =>
             GetIt.I<ILocalService>().getUser() != null,
         beamToNamed: '/login',
