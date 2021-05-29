@@ -461,8 +461,6 @@ abstract class $LoginStateCopyWith<$Res> {
       PasswordInput password,
       UserGetEntity? user,
       ErrorEntity? error});
-
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -504,17 +502,6 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
               as ErrorEntity?,
     ));
   }
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error {
-    if (_value.error == null) {
-      return null;
-    }
-
-    return $ErrorEntityCopyWith<$Res>(_value.error!, (value) {
-      return _then(_value.copyWith(error: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -529,9 +516,6 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       PasswordInput password,
       UserGetEntity? user,
       ErrorEntity? error});
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc

@@ -1,12 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class UserBaseEntity {
+  final String email;
 
-part 'user_entity.freezed.dart';
+  const UserBaseEntity({required this.email});
+}
 
-@freezed
-class UserEntity with _$UserEntity {
-  const factory UserEntity.base({required String email}) = UserBaseEntity;
-  const factory UserEntity.get({required String id, required String email}) =
-      UserGetEntity;
-  const factory UserEntity.post(
-      {required String email, required String password}) = UserPostEntity;
+class UserGetEntity extends UserBaseEntity {
+  final String id;
+
+  const UserGetEntity({required this.id, required String email})
+      : super(email: email);
+}
+
+class UserPostEntity extends UserBaseEntity {
+  final String password;
+
+  const UserPostEntity({required String email, required this.password})
+      : super(email: email);
 }

@@ -621,8 +621,6 @@ abstract class $RegisterStateCopyWith<$Res> {
       PasswordInput password,
       ConfirmPasswordInput confirmPassword,
       ErrorEntity? error});
-
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -665,17 +663,6 @@ class _$RegisterStateCopyWithImpl<$Res>
               as ErrorEntity?,
     ));
   }
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error {
-    if (_value.error == null) {
-      return null;
-    }
-
-    return $ErrorEntityCopyWith<$Res>(_value.error!, (value) {
-      return _then(_value.copyWith(error: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -691,9 +678,6 @@ abstract class _$RegisterStateCopyWith<$Res>
       PasswordInput password,
       ConfirmPasswordInput confirmPassword,
       ErrorEntity? error});
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc

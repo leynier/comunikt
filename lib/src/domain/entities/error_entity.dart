@@ -1,9 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ErrorEntity {
+  final int code;
+  final String message;
 
-part 'error_entity.freezed.dart';
-
-@freezed
-class ErrorEntity with _$ErrorEntity {
-  const factory ErrorEntity({required int code, required String message}) =
-      _ErrorEntity;
+  const ErrorEntity({required this.code, required this.message});
 }

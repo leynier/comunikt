@@ -6,14 +6,14 @@ part of 'user_get_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserGetModel _$_$_UserGetModelFromJson(Map<String, dynamic> json) {
-  return _$_UserGetModel(
+UserGetModel _$UserGetModelFromJson(Map<String, dynamic> json) {
+  return UserGetModel(
     id: json['id'] as String,
     email: json['email'] as String,
   );
 }
 
-Map<String, dynamic> _$_$_UserGetModelToJson(_$_UserGetModel instance) =>
+Map<String, dynamic> _$UserGetModelToJson(UserGetModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,

@@ -312,8 +312,6 @@ abstract class $ResetPasswordStateCopyWith<$Res> {
           ResetPasswordState value, $Res Function(ResetPasswordState) then) =
       _$ResetPasswordStateCopyWithImpl<$Res>;
   $Res call({FormzStatus status, EmailInput email, ErrorEntity? error});
-
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -346,17 +344,6 @@ class _$ResetPasswordStateCopyWithImpl<$Res>
               as ErrorEntity?,
     ));
   }
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error {
-    if (_value.error == null) {
-      return null;
-    }
-
-    return $ErrorEntityCopyWith<$Res>(_value.error!, (value) {
-      return _then(_value.copyWith(error: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -367,9 +354,6 @@ abstract class _$ResetPasswordStateCopyWith<$Res>
       __$ResetPasswordStateCopyWithImpl<$Res>;
   @override
   $Res call({FormzStatus status, EmailInput email, ErrorEntity? error});
-
-  @override
-  $ErrorEntityCopyWith<$Res>? get error;
 }
 
 /// @nodoc

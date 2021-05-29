@@ -68,13 +68,16 @@ class LocalRepository implements ILocalRepository {
     try {
       final sessionRaw = box.get('session');
       if (sessionRaw != null) {
-        supabaseClient.auth.recoverSession(sessionRaw);
+        final response = await supabaseClient.auth.recoverSession(sessionRaw);
+        if (response.error != null) {
+          throw Exception(response.error!.message);
+        }
+        return true;
       }
-      return true;
     } catch (e) {
       logger.e(e.toString());
-      return false;
     }
+    return false;
   }
 
   @override

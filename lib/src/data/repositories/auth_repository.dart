@@ -22,7 +22,7 @@ class AuthRepository implements IAuthRepository {
         case AuthChangeEvent.passwordRecovery:
           if (session != null && session.user != null) {
             _controller.add(
-              AuthStatusEntity.authenticated(
+              AuthenticatedAuthStatusEntity(
                 user: UserGetEntity(
                   id: session.user!.id,
                   email: session.user!.email,
@@ -30,11 +30,11 @@ class AuthRepository implements IAuthRepository {
               ),
             );
           } else {
-            _controller.add(const AuthStatusEntity.unauthenticated());
+            _controller.add(const UnauthenticatedAuthStatusEntity());
           }
           break;
         case AuthChangeEvent.signedOut:
-          _controller.add(const AuthStatusEntity.unauthenticated());
+          _controller.add(const UnauthenticatedAuthStatusEntity());
           break;
       }
     });

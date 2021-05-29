@@ -33,7 +33,9 @@ class App extends StatelessWidget {
                 return BlocListener<IAuthBloc, AuthState>(
                   listener: (context, state) {
                     state.when(
-                      initial: () {},
+                      checking: () {
+                        context.beamToNamed('/checking');
+                      },
                       authenticated: (user) {},
                       unauthenticated: () {
                         context.beamToNamed('/login');

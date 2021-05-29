@@ -1,12 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:comunikt/src/domain/entities/entities.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'user_get_model.freezed.dart';
 part 'user_get_model.g.dart';
 
-@freezed
-class UserGetModel with _$UserGetModel {
-  const factory UserGetModel({required String id, required String email}) =
-      _UserGetModel;
-  factory UserGetModel.fromJson(Map<String, dynamic> json) =>
+@JsonSerializable()
+class UserGetModel implements UserGetEntity {
+  @override
+  final String id;
+  @override
+  final String email;
+
+  const UserGetModel({required this.id, required this.email});
+
+  static UserGetModel fromJson(Map<String, dynamic> json) =>
       _$UserGetModelFromJson(json);
+  Map<String, dynamic> toJson() => _$UserGetModelToJson(this);
 }

@@ -23,18 +23,14 @@ class AuthBloc extends IAuthBloc {
   AuthBloc({
     required this.authService,
     required this.localService,
-  }) : super(const AuthState.initial()) {
+  }) : super(const AuthState.checking()) {
     _controller = authService.status.listen(
       (status) {
-        status.when(
-          initial: () {},
-          authenticated: (user) {
-            localService.setUser(user);
-          },
-          unauthenticated: () {
-            localService.delUser();
-          },
-        );
+        if (status is AuthenticatedAuthStatusEntity) {
+          localService.setUser(status.user);
+        } else if (status is UnauthenticatedAuthStatusEntity) {
+          localService.delUser();
+        }
         add(AuthEvent.statusChanged(status: status));
       },
     );
@@ -44,20 +40,22 @@ class AuthBloc extends IAuthBloc {
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
     yield* event.when(
       start: () async* {
-        await localService.recoverSession();
+        final response = await localService.recoverSession();
+        final user = localService.getUser();
+        if (response && user != null) {
+          yield AuthState.authenticated(user: user);
+        } else {
+          yield const AuthState.unauthenticated();
+        }
       },
       statusChanged: (status) async* {
-        yield* status.when(
-          initial: () async* {
-            yield const AuthState.initial();
-          },
-          authenticated: (user) async* {
-            yield AuthState.authenticated(user: user);
-          },
-          unauthenticated: () async* {
-            yield const AuthState.unauthenticated();
-          },
-        );
+        if (status is CheckingAuthStatusEntity) {
+          yield const AuthState.checking();
+        } else if (status is AuthenticatedAuthStatusEntity) {
+          yield AuthState.authenticated(user: status.user);
+        } else if (status is UnauthenticatedAuthStatusEntity) {
+          yield const AuthState.unauthenticated();
+        }
       },
       signOut: () async* {
         authService.signOut();
